@@ -1,7 +1,9 @@
-const Notification = () => {
-    return (
-      <p className='divider'>No feedback yet</p>
-);
-}
 
+export function Notification() {
+  return (
+    <div>
+      <p>No feedback given</p>
+    </div>
+  );
+}
 export default Notification;
