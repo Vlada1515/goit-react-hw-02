@@ -1,12 +1,8 @@
 
 import css from "./Options.module.css";
 
-export function Options({ updateFeedback, totalFeedback }) {
-  const resetFeedback = () => {
-    updateFeedback("good", 0);
-    updateFeedback("neutral", 0);
-    updateFeedback("bad", 0);
-  };
+export function Options({ updateFeedback, resetFeedback, totalFeedback }) {
+
   return (
     <div className={css.buttonList}>
       <button

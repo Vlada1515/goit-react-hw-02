@@ -18,29 +18,29 @@ function App() {
   const totalFeedback = good + neutral + bad;
   const positiveFeedback = Math.round((good / totalFeedback) * 100);
 
-  const updateFeedback = (type, value = null) => {
-    setCountFeedback((prevCountFeedback) => {
-      if (value === null) {
-        return {
-          ...prevCountFeedback,
-          [type]: prevCountFeedback[type] + 1,
-        };
-      } else {
-        return {
-          ...prevCountFeedback,
-          [type]: value,
-        };
-      }
-    });
-  };
   useEffect(() => {
     localStorage.setItem("countFeedback", JSON.stringify(countFeedback));
   }, [countFeedback]);
 
+  const updateFeedback = (type) => {
+    setCountFeedback((prevCountFeedback) => {
+      return {
+        ...prevCountFeedback,
+        [type]: prevCountFeedback[type] + 1,
+      };
+    });
+  };
+  
+  const resetFeedback = () => {
+    setCountFeedback({ good: 0, neutral: 0, bad: 0 });
+  }
+
   return (
     <>
       <Description />
-      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} />
+      <Options updateFeedback={updateFeedback}
+        resetFeedback={resetFeedback}
+        totalFeedback={totalFeedback} />
       {totalFeedback === 0 ? (
         <Notification totalFeedback={totalFeedback} />
       ) : (
