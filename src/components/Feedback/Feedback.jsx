@@ -1,4 +1,4 @@
-import css from "./Feedback.css";
+import css from "./Feedback.module.css";
 
 export function Feedback({
   countFeedback: { good, neutral, bad },

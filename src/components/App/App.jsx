@@ -5,7 +5,7 @@ import Notification from '../Notification/Notification'
 import Options from '../Options/Options'
 import { useState, useEffect } from 'react' 
 
-function App() {
+export function App() {
   const [countFeedback, setCountFeedback] = useState(() => {
     const savedFeedback = window.localStorage.getItem("countFeedback");
     if (savedFeedback !== null) {
@@ -14,12 +14,9 @@ function App() {
     return { good: 0, neutral: 0, bad: 0 };
   });
 
-  const { good, neutral, bad } = countFeedback;
-  const totalFeedback = good + neutral + bad;
-  const positiveFeedback = Math.round((good / totalFeedback) * 100);
 
   useEffect(() => {
-    localStorage.setItem("countFeedback", JSON.stringify(countFeedback));
+    window.localStorage.setItem("countFeedback", JSON.stringify(countFeedback));
   }, [countFeedback]);
 
   const updateFeedback = (type) => {
@@ -34,6 +31,10 @@ function App() {
   const resetFeedback = () => {
     setCountFeedback({ good: 0, neutral: 0, bad: 0 });
   }
+
+  const { good, neutral, bad } = countFeedback;
+  const totalFeedback = good + neutral + bad;
+  const positiveFeedback = Math.round((good / totalFeedback) * 100);
 
   return (
     <>
